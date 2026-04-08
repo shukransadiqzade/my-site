@@ -1,5 +1,17 @@
 import './App.css';
 import { useEffect } from 'react';
+import aboutImg from './images/about.jpg';
+
+import img4 from './images/img4.avif';
+import img6 from './images/img6.avif';
+import photo1 from './images/photo.jpg';
+import photo2 from './images/photo2.jpg';
+
+import review1 from './images/indir.jfif';
+import review2 from './images/images1.jfif';
+import review3 from './images/indir2.jfif';
+
+import messageImg from './images/message.webp';
 
 function App() {
     useEffect(() => {
@@ -79,7 +91,7 @@ function App() {
             <a href="#"><button>learn more</button></a>
           </div>
           <div className="image">
-            <img src="/about.jpg" alt="about us" />
+         <img src={aboutImg} alt="about us" />
           </div>
         </div>
       </section>
@@ -90,7 +102,7 @@ function App() {
         <h3 className="title">meet professional trainers</h3>
         <div className="card-container">
           <div className="card">
-            <img src="/img4.png.avif" alt="" />
+          <img src={img4} alt="" />
             <h3>someone's name</h3>
             <p>i love teaching</p>
             <div className="icons">
@@ -101,7 +113,7 @@ function App() {
             </div>
           </div>
           <div className="card">
-            <img src="/photo.jpg" alt="" />
+          <img src={photo1} alt="" />
             <h3>someone's name</h3>
             <p>i love teaching</p>
             <div className="icons">
@@ -112,7 +124,7 @@ function App() {
             </div>
           </div>
           <div className="card">
-            <img src="/img6.png.avif" alt="" />
+           <img src={img6} alt="" />
             <h3>someone's name</h3>
             <p>i love teaching</p>
             <div className="icons">
@@ -123,7 +135,7 @@ function App() {
             </div>
           </div>
           <div className="card">
-            <img src="/photo2.jpg" alt="" />
+          <img src={photo2} alt="" />
             <h3>someone's name</h3>
             <p>i love teaching</p>
             <div className="icons">
@@ -180,7 +192,7 @@ function App() {
         <h3 className="title">what our students says about us</h3>
         <div className="box-container">
           <div className="box">
-            <img src="/indir.jfif" alt="" />
+             <img src={review1} alt="" />
             <h3>someone's name</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, quibusdam.</p>
             <div className="stars">
@@ -192,7 +204,7 @@ function App() {
             </div>
           </div>
           <div className="box">
-            <img src="/images (1).jfif" alt="" />
+            <img src={review2} alt="" />
             <h3>someone's name</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, quibusdam.</p>
             <div className="stars">
@@ -204,7 +216,7 @@ function App() {
             </div>
           </div>
           <div className="box">
-            <img src="/indir (2).jfif" alt="" />
+           <img src={review3} alt="" />
             <h3>someone's name</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, quibusdam.</p>
             <div className="stars">
@@ -223,7 +235,9 @@ function App() {
         <h1 className="heading">contact us</h1>
         <h3 className="title">we love conversations, lets talk.</h3>
         <div className="row">
-          <div className="image"><img src="/message.webp" alt="message" /></div>
+          <div className="image">
+          <img src={messageImg} alt="message" />
+              </div>
           <div className="form-container">
             <form action="">
               <input type="text" placeholder="full name" />
