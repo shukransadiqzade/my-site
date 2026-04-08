@@ -1,16 +1,15 @@
 import './App.css';
 import { useEffect } from 'react';
-import aboutImg from './images/about.jpg';
+import photo1 from './images/photo1.jpg'; // photo.jpg idi -> photo1.jpg olub
+import review1 from './images/review1.jfif'; // indir.jfif idi -> review1.jfif olub
+import review2 from './images/review2.jfif'; // images1.jfif idi -> review2.jfif olub
+import review3 from './images/review3.jfif'; // indir2.jfif idi -> review3.jfif olub
 
+// Digər importlar (əgər adları dəyişməyibsə eyni qalsın)
+import aboutImg from './images/about.jpg';
 import img4 from './images/img4.avif';
 import img6 from './images/img6.avif';
-import photo1 from './images/photo.jpg';
 import photo2 from './images/photo2.jpg';
-
-import review1 from './images/indir.jfif';
-import review2 from './images/images1.jfif';
-import review3 from './images/indir2.jfif';
-
 import messageImg from './images/message.webp';
 
 function App() {
