@@ -1,61 +1,55 @@
+import { useEffect, useState } from "react";
 import './App.css';
-import { useEffect } from 'react';
-import photo1 from './images/photo1.jpg'; // photo.jpg idi -> photo1.jpg olub
-import review1 from './images/review1.jfif'; // indir.jfif idi -> review1.jfif olub
-import review2 from './images/review2.jfif'; // images1.jfif idi -> review2.jfif olub
-import review3 from './images/review3.jfif'; // indir2.jfif idi -> review3.jfif olub
-
-// Digər importlar (əgər adları dəyişməyibsə eyni qalsın)
-import aboutImg from './images/about.jpg';
-import img4 from './images/img4.avif';
-import img6 from './images/img6.avif';
-import photo2 from './images/photo2.jpg';
-import messageImg from './images/message.webp';
 
 function App() {
-    useEffect(() => {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('header .navbar ul li a');
 
-    window.onscroll = () => {
-      sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
-
-        if (top >= offset && top < offset + height) {
-          navLinks.forEach(links => {
-            links.classList.remove('active');
-            document.querySelector('header .navbar ul li a[href*=' + id + ']').classList.add('active');
-          });
-        }
-      });
+  const [active, setActive] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setActive(true);
+      } else {
+        setActive(false);
+      }
     };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="App">
       {/* header section starts */}
-      <header>
+      <header className={active ? "header-active" : ""}>
         <a href="#" className="logo"><i className="fas fa-graduation-cap"></i>logo</a>
-        <nav className="navbar">
+        <nav className={menuOpen ?"navbar nav-toggle" : "navbar"}>
           <ul>
-            <li><a href="#home">home</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#teacher">teacher</a></li>
-            <li><a href="#course">course</a></li>
-            <li><a href="#review">review</a></li>
-            <li><a href="#contact">contact</a></li>
+              <li><a href="#home" onClick={() => setMenuOpen(false)}>home</a></li>
+            <li><a href="#about" onClick={() => setMenuOpen(false)}>about</a></li>
+            <li><a href="#teacher" onClick={() => setMenuOpen(false)}>teacher</a></li>
+            <li><a href="#course" onClick={() => setMenuOpen(false)}>course</a></li>
+            <li><a href="#review" onClick={() => setMenuOpen(false)}>review</a></li>
+            <li><a href="#contact" onClick={() => setMenuOpen(false)}>contact</a></li>
           </ul>
         </nav>
-        <div className="fas fa-bars"></div>
+            <div 
+           className={menuOpen ? "fas fa-bars fa-xmark" : "fas fa-bars"} 
+           onClick={() => setMenuOpen(!menuOpen)}
+         ></div>
       </header>
+      {/* header section ends */}
 
       {/* home section start */}
-      <section className="home" id="home">
+      <section className="home" id="home"
+      style={{ background: `linear-gradient(rgba(198, 59, 250, .8), rgba(198, 59, 250, .8)), url('images/img.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat'
+       }} >
+
         <div className="content">
-          <h1>learn online from home</h1>
+          <h1>learn online form home</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, vel corrupti. Exercitationem earum hic distinctio ab cupiditate a facilis ullam.</p>
           <a href="#"><button>discover more</button></a>
         </div>
@@ -78,32 +72,34 @@ function App() {
           </div>
         </div>
       </section>
+      {/* home section ends */}
 
       {/* about section starts */}
       <section className="about" id="about">
         <h1 className="heading">about us</h1>
-        <h3 className="title">start your journey with us</h3>
+        <h3 className="title">start your journey width us</h3>
         <div className="row">
           <div className="content">
-            <h3>start your journey to a better life with our practical courses</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod perferendis inventore aspernatur temporibus corporis delectus mollitia enim aut expedita perspiciatis!</p>
+            <h3>start your journey to a better life width our practical courses</h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod perferendis inventore aspernatur temporibus corporis delectus mollitia enim aut expedita perspiciatis! Quaerat maxime neque vitae esse voluptatum. Quod commodi odio voluptatibus!</p>
             <a href="#"><button>learn more</button></a>
           </div>
           <div className="image">
-         <img src={aboutImg} alt="about us" />
+            <img src={process.env.PUBLIC_URL + '/images/about.jpg'} alt="about" />
           </div>
         </div>
       </section>
+      {/* about section ends */}
 
-         {/* teacher section starts */}
+      {/* teacher section starts */}
       <section id="teacher" className="teacher">
-        <h1 className="heading">our teacher</h1>
-        <h3 className="title">meet professional trainers</h3>
+        <h1 className="heading">our tracher</h1>
+        <h3 className="title"> meet professional trainers </h3>
         <div className="card-container">
           <div className="card">
-          <img src={img4} alt="" />
+            <img src={process.env.PUBLIC_URL + '/images/img4.avif'} alt="" />
             <h3>someone's name</h3>
-            <p>i love teaching</p>
+            <p> i love teaching</p>
             <div className="icons">
               <a href="#" className="fab fa-facebook-f"></a>
               <a href="#" className="fab fa-twitter"></a>
@@ -112,9 +108,9 @@ function App() {
             </div>
           </div>
           <div className="card">
-          <img src={photo1} alt="" />
+            <img src={process.env.PUBLIC_URL + '/images/photo1.jpg'} alt="" />
             <h3>someone's name</h3>
-            <p>i love teaching</p>
+            <p> i love teaching</p>
             <div className="icons">
               <a href="#" className="fab fa-facebook-f"></a>
               <a href="#" className="fab fa-twitter"></a>
@@ -123,9 +119,9 @@ function App() {
             </div>
           </div>
           <div className="card">
-           <img src={img6} alt="" />
+            <img src={process.env.PUBLIC_URL + '/images/img6.avif'} alt="" />
             <h3>someone's name</h3>
-            <p>i love teaching</p>
+            <p> i love teaching</p>
             <div className="icons">
               <a href="#" className="fab fa-facebook-f"></a>
               <a href="#" className="fab fa-twitter"></a>
@@ -134,9 +130,9 @@ function App() {
             </div>
           </div>
           <div className="card">
-          <img src={photo2} alt="" />
+            <img src={process.env.PUBLIC_URL + '/images/photo2.jpg'} alt="" />
             <h3>someone's name</h3>
-            <p>i love teaching</p>
+            <p> i love teaching</p>
             <div className="icons">
               <a href="#" className="fab fa-facebook-f"></a>
               <a href="#" className="fab fa-twitter"></a>
@@ -146,8 +142,9 @@ function App() {
           </div>
         </div>
       </section>
+      {/* teacher section ends */}
 
-      {/* course section starts */}
+      {/* course section start */}
       <section id="course" className="course">
         <h1 className="heading">our courses</h1>
         <h3 className="title">upgrade your skills with newest courses</h3>
@@ -184,6 +181,7 @@ function App() {
           </div>
         </div>
       </section>
+      {/* course section ends */}
 
       {/* review section starts */}
       <section id="review" className="review">
@@ -191,52 +189,41 @@ function App() {
         <h3 className="title">what our students says about us</h3>
         <div className="box-container">
           <div className="box">
-             <img src={review1} alt="" />
+            <img src={process.env.PUBLIC_URL + '/images/indir1.jfif'} alt="" />
             <h3>someone's name</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, quibusdam.</p>
             <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
             </div>
           </div>
           <div className="box">
-            <img src={review2} alt="" />
+            <img src={process.env.PUBLIC_URL + '/images/review1.jfif'} alt="" />
             <h3>someone's name</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, quibusdam.</p>
             <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
             </div>
           </div>
           <div className="box">
-           <img src={review3} alt="" />
+            <img src={process.env.PUBLIC_URL + '/images/review2.jfif'} alt="" />
             <h3>someone's name</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, quibusdam.</p>
             <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
             </div>
           </div>
         </div>
       </section>
+      {/* review section ends */}
 
-      {/* contact section start*/}
+      {/* contact section start */}
       <section className="contact" id="contact">
         <h1 className="heading">contact us</h1>
-        <h3 className="title">we love conversations, lets talk.</h3>
+        <h3 className="title">we love conversatios, lets talk.</h3>
         <div className="row">
           <div className="image">
-          <img src={messageImg} alt="message" />
-              </div>
+            <img src={process.env.PUBLIC_URL + '/images/message.webp'} alt="" />
+          </div>
           <div className="form-container">
             <form action="">
               <input type="text" placeholder="full name" />
@@ -248,8 +235,10 @@ function App() {
           </div>
         </div>
       </section>
-     
-       <section className="footer">
+      {/* contact section ends */}
+
+      {/* footer section start */}
+      <section className="footer">
         <div className="icons">
           <a href="#" className="fab fa-facebook-f"></a>
           <a href="#" className="fab fa-twitter"></a>
